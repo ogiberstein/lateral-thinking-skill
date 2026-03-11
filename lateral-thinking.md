@@ -39,13 +39,15 @@ Standard knowledge is Ring 0. Start at Ring 2.
 
 ## Workflow
 
-### Step 1: State the Problem Skeleton
+### Step 1: Confirm the Problem Skeleton
 
 Reduce the user's situation to its mechanical core. Strip away jargon and domain-specific framing — describe the raw dynamics.
 
 Example (product): "We build features. Users try them once. They don't return. We build more features."
 Example (health): "Intervention reduces symptom. Symptom returns when intervention stops. Increasing intervention has diminishing returns."
 Example (engineering): "System handles normal load. Spike arrives. Recovery takes longer than the spike. Next spike arrives before recovery completes."
+
+**Before proceeding:** Present the skeleton to the user and confirm it captures the right problem. Since this skill deliberately skips Ring 0-1 knowledge, decomposing the wrong problem wastes all downstream divergence. A single confirmation here prevents compounding error through every subsequent step.
 
 ### Step 2: Decompose Into Primitives
 
@@ -98,6 +100,28 @@ For each non-obvious connection discovered:
 
 **Estimated impact:** [Order of magnitude — how much could this move the needle?]
 
+### Step 5b: Hypothesis Intersection
+
+After generating individual hypotheses, look for *combinations* across them. Sometimes the real insight lives at the intersection of two cross-domain hypotheses — e.g., the network science insight combined with the game theory insight reveals a dynamic that neither alone explains.
+
+For each promising pair or cluster of hypotheses, ask:
+- Do these share an underlying structural pattern?
+- Does one hypothesis create the conditions that make another hypothesis actionable?
+- If both mechanisms are active simultaneously, what emergent behavior would that predict?
+
+Document any intersection hypotheses with the same format as Step 5.
+
+### Step 5c: Adversarial Pass — Kill Your Darlings
+
+For each hypothesis (including intersections), mount the strongest possible attack:
+
+- **Superficiality test:** Does the analogy transfer at the *mechanism* level or only the *metaphor* level? "It's like a phase transition" is only useful if the system actually has the right dimensionality and energy landscape for phase transition dynamics.
+- **Math test:** If the source domain's mechanism depends on specific quantitative properties (scale, distribution shape, dimensionality, rate constants), do those properties hold in the target domain?
+- **Survivorship test:** Is this analogy well-known in a third field and already debunked there?
+- **So-what test:** Even if the mechanism transfers perfectly, does it suggest an action the user can actually take?
+
+Kill hypotheses that fail multiple tests. Downrank those that fail one. Be ruthless — clever-sounding connections that don't survive scrutiny waste the user's time.
+
 ### Step 6: Rank and Recommend
 
 Prioritize by: **mechanistic plausibility** × **domain distance** × **testability**
@@ -108,6 +132,19 @@ Penalize:
 - Vague "more research needed" without a specific thread to pull
 - Ideas that require resources wildly beyond the user's reach
 - Surface-level analogies where only the metaphor transfers, not the mechanism
+- Analogies where the math doesn't port — if the source mechanism depends on specific quantitative properties (scale, distribution shape, dimensionality, rate constants) that don't hold in the target domain, the analogy is decorative, not functional
+
+### Step 7: Iteration — Feed Back Into the Model
+
+If the top-ranked hypothesis reveals a new primitive or reframes the problem:
+
+1. Update the problem skeleton from Step 1 with the new understanding.
+2. Re-enter Step 2 with the updated model — the decomposition may now expose different components.
+3. Run Steps 3-6 again on the new decomposition.
+
+This is not optional busywork. The first pass through the ring model uses the user's original framing, which is often the framing that got them stuck. The best hypotheses from the first pass should *change how you see the problem*, and that changed view deserves its own exploration cycle.
+
+Stop iterating when: the problem skeleton stabilizes (a new pass doesn't change it), or you've completed two full cycles.
 
 ## Output Format
 
@@ -116,6 +153,7 @@ Penalize:
 
 ### Mechanism Skeleton
 [2-3 sentences: the mechanical core of the problem, stripped of jargon]
+[Confirm with user before proceeding]
 
 ### Ring 2: Component Discoveries
 [3-5 non-obvious observations about the problem's components]
@@ -133,11 +171,20 @@ Penalize:
 
 [Repeat for 3-7 hypotheses]
 
+### Hypothesis Intersections
+[Combinations of hypotheses that reveal emergent dynamics neither alone explains]
+
+### Adversarial Review
+[For each surviving hypothesis: strongest counterargument, math-portability check, verdict (SURVIVES / DOWNRANKED / KILLED)]
+
 ### Cross-Domain Pointers
 [Specific papers, fields, concepts, or literatures to raid for more]
 
 ### Recommended Actions
 [Ranked list: what to try first, what to investigate, what to discard]
+
+### Iteration
+[If top hypotheses reframe the problem: updated skeleton and new hypotheses from second pass. Otherwise: "Problem skeleton stable — no further iteration needed."]
 ```
 
 ## Guardrails
