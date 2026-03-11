@@ -27,19 +27,11 @@ It works on any domain: engineering, business strategy, product design, scientif
 
 ### Claude Code
 
-Copy the skill file to your Claude Code skills directory:
+Claude Code expects skills in a named subdirectory with a `SKILL.md` file:
 
 ```bash
-cp lateral-thinking.md ~/.claude/skills/lateral-thinking.md
-```
-
-### As a `.skill` File
-
-If you have the `.skill` archive, extract and copy:
-
-```bash
-unzip lateral-thinking.skill -d /tmp/lt
-cp /tmp/lt/lateral-thinking/SKILL.md ~/.claude/skills/lateral-thinking.md
+mkdir -p ~/.claude/skills/lateral-thinking
+cp lateral-thinking.md ~/.claude/skills/lateral-thinking/SKILL.md
 ```
 
 ## Usage
